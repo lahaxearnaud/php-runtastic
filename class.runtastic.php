@@ -76,7 +76,7 @@
 			$responseOutput = curl_exec($this->ch); 
 			$responseStatus = curl_getinfo($this->ch);
 			
-			$responseOutputJson = json_decode($responseOutput);
+			$responseOutputJson = @json_decode($responseOutput, false, 512, JSON_BIGINT_AS_STRING);
 
 			if ($responseStatus["http_code"] == 200) {
 				$this->doc->loadHTML($responseOutputJson->update);
